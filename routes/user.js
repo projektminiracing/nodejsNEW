@@ -1,10 +1,16 @@
 var express = require('express'); 
 
 var router = express.Router();   //mini aplikacija za delo s progami
-
+var ObjectId=require('mongodb').ObjectID;
 var User=require('../models/user');
+var Driver=require('../models/driver');
 
 router.post('/register', function(req, res) {
+    User.findOne({username : req.body.username } || {email:req.body.email}, function(err,user){
+        if(user != null){
+            res.status(501).send({error : "Uporabniško ime ali email že obstaja!"});
+        }
+    });
     var user = new User({
         username : req.body.username,
         email : req.body.email,
@@ -17,9 +23,30 @@ router.post('/register', function(req, res) {
    	user.save(function(err,user) {
         if (err)
             res.status(500).send({ error: err }) //ob napaki vrnemo error 500 in opis napake
-        else
-            res.json(user); //ob uspešnem shranjevanju izpišemo celoten objekt
-	});
+       // else
+            //res.json(user); //ob uspešnem shranjevanju izpišemo celoten objekt
+    });
+
+    Driver.find({user_id : null}, function(err,bots){
+        if(err)
+            res.status(500).send({ error: err });
+        else{
+            console.log(bots.length);
+            var user_driver = new Driver(JSON.parse(JSON.stringify(bots[Math.floor(Math.random() * Math.floor(bots.length))])));
+      
+            if(user_driver != null){
+                user_driver._id = new ObjectId();
+                user_driver.user_id = user._id;
+                user_driver.save(function(err,user_driver){
+                    console.log("driver shranjen");
+                    res.json(user_driver);
+                });
+            }
+            else{
+                console.log("user = null");
+            }
+        }
+    });
 });	
 
 router.post('/login', function(req, res) {

@@ -101,7 +101,7 @@ router.post('/',function(req,res){
 
 router.get('/simulate', function(req, res){
 	var customID = "5b0f1cc53316e51f0c1fee49"; //tu bomo spreminjali
-	var userdriverID = "5b12934f186da53b3cb23be6";
+	var userdriverID = req.params._id;
 	var _track;
 	var _drivers;
 	var _vehicles;
