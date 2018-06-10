@@ -4,6 +4,15 @@ var router = express.Router();
 
 var Vehicle = require('../models/vehicle');
 
+router.get('/user_id/:user_id',function(req, res) { //dobiš vehicle glede na user_id (vozilo od userja)
+    Vehicle.find({user_id:req.params.user_id}, function(err, v) {
+        if (err)
+            res.status(500).send({ error: err })
+        else
+            res.json(v);
+    });
+});
+
 router.get('/testnoDodajanje', function(req, res) {
 
 	//napolnimo shemo s podatki
@@ -50,7 +59,7 @@ router.get('/', function(req, res) {
 		if (err)
 			res.status(500).send({ error: err })
 		else
-		res.json(p);
+			res.json(p);
 	});
 });
 

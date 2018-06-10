@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 
 var VehicleSchema   = new Schema({
+    user_id : String,
     manufacturer: String,
     color: String,
     driveWheel:{

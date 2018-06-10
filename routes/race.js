@@ -99,104 +99,113 @@ router.post('/',function(req,res){
 	});
 });
 
-router.get('/simulate', function(req, res){
+router.get('/simulate/:id', function(req, res){
+	console.log("ASDAD");
 	var customID = "5b0f1cc53316e51f0c1fee49"; //tu bomo spreminjali
-	var userdriverID = req.params._id;
+	var user_ID = req.params._id;
 	var _track;
 	var _drivers;
 	var _vehicles;
 	var _userDriver;
-	Driver.findOne({user_id : userdriverID },function(err,user_driver){
+	var _userVehicle;
+	Driver.findOne({user_id : user_ID },function(err,user_driver){
 		if(err){
 			res.status(500).send({error: err});
 		}
 		else{
 		_userDriver = user_driver;
-		Track.findOne({_id: customID}, function(err, t){
-			if (err){
-				res.status(500).send({ error: err })
-			}
+		Vehicle.findOne({user_id: user_ID},function(err,user_vehicle){
+			if(err)
+				res.status(500).send({error: err});
 			else{
-				_track = t;
-				Driver.find({overall:{$lt:user_driver.overall+10}},function(err, d) {
+				_userVehicle = user_vehicle;
+				Track.findOne({_id: customID}, function(err, t){
 					if (err){
 						res.status(500).send({ error: err })
 					}
 					else{
-						_drivers = d;
-						Vehicle.find(function(err, v) {
+						_track = t;
+						Driver.find({overall:{$lt:user_driver.overall+10}} || {user_id: user_ID},function(err, d) {
 							if (err){
 								res.status(500).send({ error: err })
 							}
 							else{
-								_vehicles = v;
-								var st_odsekov = 8;
-								var RaceSimulation = new Race({
-									sections: new Array(st_odsekov),
-									track: _track,
-									drivers: _drivers,
-									vehicles: _vehicles
-								});
-								for(j = 0; j < st_odsekov; j++){ //gre skozi odseke 
-									RaceSimulation["sections"][j] = new Array(3);
-									for(i = 0; i < 3; i++){ //gre skozi igralce
-										var imeVoznika = _drivers[i]['name'];
-										var ocenaVoznika;
-										var ocenaVozila;
-										var skupnaOcena;
-										var overall = _drivers[i]['overall']; //overall voznika
-						
-										var material = _track['sections'][j]['material'];
-										var elevation = _track['sections'][j]['elevation'];
-										var faktorMateriala; //večji kot je faktor materiala, dlje rabi voznik da prevozi odsek
-										if(material == "Stone"){
-											faktorMateriala = 1.0; //najmanj spolzko
-										}
-										else if(material == "Wood"){
-											faktorMateriala = 0.8; //srednje spolzko
-										}
-										else if(material == "Glass"){ 
-											faktorMateriala = 0.6; //najbolj spolzko
-										}
-						
-										//random - lahko se zgodi da pobere battery powerup -> + bencin
-										var moznostPowerupa;
-										var tezavnostProge = _track['difficulty']; //integer od 1 do 10
-										if (tezavnostProge <= 3) { //najlažja proga
-											moznostPowerupa = 0.6;
-										}
-										if (tezavnostProge > 3 && tezavnostProge <= 6) { //srednjetežka proga
-											moznostPowerupa = 0.3;
-										}
-										if (tezavnostProge > 6) { //težka proga
-											moznostPowerupa = 0.1;
-										}
-										//VERJETNOST ZA POWERUP BATTERY
-										if(Math.random() < moznostPowerupa){ //če bo random št. med 0 in 1 v območju moznostPowerup
-											_vehicles[i]['batteryLeft'] += 5; //bencin
-										}
-										_vehicles[i]['batteryLeft'] -= elevation; //večji naklon odseka povzroči večjo porabo goriva
-						
-										var pospesek = _vehicles[i]['acceleration'];
-										var najvecjaHitrost = _vehicles[i]['topSpeed'];
-										var teza = _vehicles[i]['weight'];
-										var motorKonji = _vehicles[i]['engine']['horsePower'];      
-										var dolzinaOdseka = _track['sections'][j]['length'];
-										var kot = _track['sections'][j]['angle'];
-										var faktorKota = kot / 90; //90 najvecji ovinek
-									
-										var overtaking = _drivers[i]['overtaking'] / 100;
-						
-										var hitrostModifier = faktorMateriala * faktorKota * (pospesek/10  * motorKonji/100 * overall/100);
-										var casVoznika = dolzinaOdseka / (najvecjaHitrost * hitrostModifier);
-										RaceSimulation["sections"][j][i] = casVoznika;
-										if(Math.random() > overtaking){ //je prehitel nekoga
-											RaceSimulation["sections"][j][i] -= (dolzinaOdseka/najvecjaHitrost)/2;
-										}
+								_drivers = d;
+								Vehicle.find(function(err, v) {
+									if (err){
+										res.status(500).send({ error: err })
 									}
-								}
-								RaceSimulation.save();
-								res.json(RaceSimulation);
+									else{
+										_vehicles = v;
+										var st_odsekov = 8;
+										var RaceSimulation = new Race({
+											sections: new Array(st_odsekov),
+											track: _track,
+											drivers: _drivers,
+											vehicles: _vehicles
+										});
+										for(j = 0; j < st_odsekov; j++){ //gre skozi odseke 
+											RaceSimulation["sections"][j] = new Array(3);
+											for(i = 0; i < _drivers.length; i++){ //gre skozi igralce
+												var imeVoznika = _drivers[i]['name'];
+												var ocenaVoznika;
+												var ocenaVozila;
+												var skupnaOcena;
+												var overall = _drivers[i]['overall']; //overall voznika
+								
+												var material = _track['sections'][j]['material'];
+												var elevation = _track['sections'][j]['elevation'];
+												var faktorMateriala; //večji kot je faktor materiala, dlje rabi voznik da prevozi odsek
+												if(material == "Stone"){
+													faktorMateriala = 1.0; //najmanj spolzko
+												}
+												else if(material == "Wood"){
+													faktorMateriala = 0.8; //srednje spolzko
+												}
+												else if(material == "Glass"){ 
+													faktorMateriala = 0.6; //najbolj spolzko
+												}
+								
+												//random - lahko se zgodi da pobere battery powerup -> + bencin
+												var moznostPowerupa;
+												var tezavnostProge = _track['difficulty']; //integer od 1 do 10
+												if (tezavnostProge <= 3) { //najlažja proga
+													moznostPowerupa = 0.6;
+												}
+												if (tezavnostProge > 3 && tezavnostProge <= 6) { //srednjetežka proga
+													moznostPowerupa = 0.3;
+												}
+												if (tezavnostProge > 6) { //težka proga
+													moznostPowerupa = 0.1;
+												}
+												//VERJETNOST ZA POWERUP BATTERY
+												if(Math.random() < moznostPowerupa){ //če bo random št. med 0 in 1 v območju moznostPowerup
+													_vehicles[i]['batteryLeft'] += 5; //bencin
+												}
+												_vehicles[i]['batteryLeft'] -= elevation; //večji naklon odseka povzroči večjo porabo goriva
+								
+												var pospesek = _vehicles[i]['acceleration'];
+												var najvecjaHitrost = _vehicles[i]['topSpeed'];
+												var teza = _vehicles[i]['weight'];
+												var motorKonji = _vehicles[i]['engine']['horsePower'];      
+												var dolzinaOdseka = _track['sections'][j]['length'];
+												var kot = _track['sections'][j]['angle'];
+												var faktorKota = kot / 90; //90 najvecji ovinek
+											
+												var overtaking = _drivers[i]['overtaking'] / 100;
+								
+												var hitrostModifier = faktorMateriala * faktorKota * (pospesek/10  * motorKonji/100 * overall/100);
+												var casVoznika = dolzinaOdseka / (najvecjaHitrost * hitrostModifier);
+												RaceSimulation["sections"][j][i] = casVoznika;
+												if(Math.random() > overtaking){ //je prehitel nekoga
+													RaceSimulation["sections"][j][i] -= (dolzinaOdseka/najvecjaHitrost)/2;
+												}
+											}
+										}
+										RaceSimulation.save();
+										res.json(RaceSimulation);
+									}
+								});
 							}
 						});
 					}

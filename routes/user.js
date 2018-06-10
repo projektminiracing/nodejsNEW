@@ -4,6 +4,7 @@ var router = express.Router();   //mini aplikacija za delo s progami
 var ObjectId=require('mongodb').ObjectID;
 var User=require('../models/user');
 var Driver=require('../models/driver');
+var Vehicle=require('../models/vehicle');
 
 router.post('/register', function(req, res) {
     User.findOne({username : req.body.username } || {email:req.body.email}, function(err,user){
@@ -27,19 +28,36 @@ router.post('/register', function(req, res) {
             //res.json(user); //ob uspešnem shranjevanju izpišemo celoten objekt
     });
 
+    var user_driver;
+    var user_vehicle;
     Driver.find({user_id : null}, function(err,bots){
         if(err)
             res.status(500).send({ error: err });
         else{
-            console.log(bots.length);
-            var user_driver = new Driver(JSON.parse(JSON.stringify(bots[Math.floor(Math.random() * Math.floor(bots.length))])));
-      
+            user_driver = new Driver(JSON.parse(JSON.stringify(bots[Math.floor(Math.random() * Math.floor(bots.length))])));
+
+            Vehicle.find({user_id : null},function(err,vehicles){   
+                if(err)
+                    res.status(501).send({error: "There is no such vehicle!"});
+                else
+                    user_vehicle = new Vehicle(JSON.parse(JSON.stringify(vehicles[Math.floor(Math.random() * Math.floor(vehicles.length))])));
+                    if(user_vehicle != null){
+                        user_vehicle._id = new ObjectId();
+                        user_vehicle.user_id = user._id;
+                        user_vehicle.save(function(err,user_vehicle){
+                            if(err) res.status(502).send({error: "User vehicle save failed!"})
+                        });
+                    }
+                    else{
+                        console.log("user_vehicle = null");
+                    }
+            });
+
             if(user_driver != null){
                 user_driver._id = new ObjectId();
                 user_driver.user_id = user._id;
                 user_driver.save(function(err,user_driver){
-                    console.log("driver shranjen");
-                    res.json(user_driver);
+                    if(err) res.status(502).send({error: "User driver save failed!"})
                 });
             }
             else{
