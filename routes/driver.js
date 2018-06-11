@@ -16,19 +16,19 @@ router.post('/', function(req, res) {
 });	
 
 router.post('/upgrade',function(req,res){
-    Driver.findByIdAndUpdate({_id : req.body[0]._id},{
-        speed: req.body[0].speed,
-        overtaking: req.body[0].overtaking,
-        blocking: req.body[0].blocking,
-        bad_weather: req.body[0].bad_weather,
-        reaction_time: req.body[0].reaction_time,
-        concetration: req.body[0].concetration,
-        patience: req.body[0].patience,
-        aggresiveness: req.body[0].aggresiveness,
-        will: req.body[0].will,
-        intelligence: req.body[0].intelligence,
-        fitness: req.body[0].fitness,
-        injuries: req.body[0].injuries
+    Driver.findByIdAndUpdate({_id : req.body._id},{
+        speed: req.body.speed,
+        overtaking: req.body.overtaking,
+        blocking: req.body.blocking,
+        bad_weather: req.body.bad_weather,
+        reaction_time: req.body.reaction_time,
+        concetration: req.body.concetration,
+        patience: req.body.patience,
+        aggresiveness: req.body.aggresiveness,
+        will: req.body.will,
+        intelligence: req.body.intelligence,
+        fitness: req.body.fitness,
+        injuries: req.body.injuries
     },function(err,driver){
         if(err)
             res.status(500).send({ error: err });

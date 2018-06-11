@@ -8,7 +8,8 @@ var UserSchema = new Schema({
     password: String,
     firstname: String,
     lastname: String,
-    birthday: Date
+    birthday: Date,
+    photo_path: String
     //dodaj sliko
 });
 

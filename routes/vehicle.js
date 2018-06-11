@@ -53,6 +53,27 @@ router.post('/',function(req,res){
 	});
 });
 
+router.post('/upgrade',function(req,res){
+    Vehicle.findByIdAndUpdate({_id : req.body._id},{
+        batteryConsumption: req.body.engine.batteryConsumption,
+        horsePower: req.body.engine.horsePower,
+        chargeTime: req.body.chargeTime,
+        acceleration: req.body.acceleration,
+        topSpeed: req.body.topSpeed
+    },function(err,vehicle){
+        if(err)
+            res.status(500).send({ error: err });
+        else{
+            vehicle.save(function(err,_vehicle){
+                if(err)
+                    res.status(501).send({error:err});
+                else
+                    res.json(_vehicle);
+            });
+        }
+    });
+});
+
 // GET vozila
 router.get('/', function(req, res) {
    Vehicle.find(function(err, p) {

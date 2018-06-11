@@ -6,6 +6,9 @@ var User=require('../models/user');
 var Driver=require('../models/driver');
 var Vehicle=require('../models/vehicle');
 
+var multer = require('multer');
+var upload = multer({ dest: 'public/images/' });
+
 router.post('/register', function(req, res) {
     User.findOne({username : req.body.username } || {email:req.body.email}, function(err,user){
         if(user != null){
@@ -95,6 +98,17 @@ router.post('/logout', function(req, res, next) {
         });
     }
 });	
+
+router.post('/photo/:id', upload.single('slika'), function(req,res){
+    User.findByIdAndUpdate({_id : req.params.id},
+        { photo_path: 'images/'+req.file.filename}, 
+        function(err, user){
+            if(err)
+                res.status(500).send({ error: err }) 
+            else
+                res.json(user);
+    });
+});
 
 router.get('/', function(req, res) {
 	//funkcija find brez parametra vrne vse objekte, ki ustrezajo shemi
