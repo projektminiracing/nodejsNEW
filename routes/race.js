@@ -107,7 +107,7 @@ router.get('/simulate/:track_id/:user_id', function(req, res){
 	var _vehicles;
 	var _userDriver;
 	var _userVehicle;
-	Driver.findOne({user_id : user_ID },function(err,user_driver){
+	Driver.findOne({user_id : user_ID},function(err,user_driver){
 		if(err){
 			res.status(500).send({error: err});
 		}
@@ -124,7 +124,7 @@ router.get('/simulate/:track_id/:user_id', function(req, res){
 					}
 					else{
 						_track = t;
-						Driver.find({overall:{$lt:user_driver.overall+10}},function(err, d) {
+						Driver.find({overall:{$lt:user_driver.overall+10}, user_id: { $ne: user_ID }},function(err, d) {
 							if (err){
 								res.status(500).send({ error: err })
 							}
@@ -137,15 +137,15 @@ router.get('/simulate/:track_id/:user_id', function(req, res){
 									else{
 										_vehicles = v;
 										var st_odsekov = _track.sections.length;
-										var RaceSimulation = new Race({
-											sections: new Array(st_odsekov),
-											track: _track,
-											drivers: _drivers,
-											vehicles: _vehicles
-										});
+										var _sections = new Array(st_odsekov);
+										var _final_times = new Array(5);
+										_drivers[4] = user_driver;
 
+										for(m = 0; m < 5; m++) _final_times[m] = 0;
 										for(j = 0; j < st_odsekov; j++){ //gre skozi odseke 
-											RaceSimulation["sections"][j] = new Array(_drivers.length);
+											_sections[j] = new Array(2);
+											_sections[j][0] = new Array(5);
+											_sections[j][1] = new Array(5);
 
 											var material = _track['sections'][j]['material'];
 											var elevation = _track['sections'][j]['elevation'];
@@ -158,6 +158,15 @@ router.get('/simulate/:track_id/:user_id', function(req, res){
 											}
 											else if(material == "Glass"){ 
 												faktorMateriala = 0.6; //najbolj spolzko
+											}
+											else if(material == "Metal"){
+												faktorMateriala = 0.7;
+											}
+											else if(material == "Porcelaine"){
+												faktorMateriala = 0.3;
+											}
+											else if(material == "Grass"){
+												faktorMateriala = 0.8;
 											}
 
 											var moznostPowerupa;
@@ -196,7 +205,7 @@ router.get('/simulate/:track_id/:user_id', function(req, res){
 											var overall;
 											//TIME
 											var hitrostModifier;
-											for(i = 0; i < _drivers.length; i++){ //gre skozi igralce
+											for(i = 0; i < 4; i++){ //gre skozi igralce
 
 												if(Math.random() < moznostPowerupa){ //če bo random št. med 0 in 1 v območju moznostPowerup
 													_vehicles[i]['batteryLeft'] += 5; //bencin
@@ -205,13 +214,13 @@ router.get('/simulate/:track_id/:user_id', function(req, res){
 												pospesek = _vehicles[i]['acceleration'] / 10;
 												najvecjaHitrost = _vehicles[i]['topSpeed'];
 												teza = _vehicles[i]['weight'];
-												motorKonji = _vehicles[i]['engine']['horsePower'] / 100;   
+												motorKonji = _vehicles[i]['engine']['horsePower'] / 200;   
 
 												overtaking = _drivers[i]['overtaking'] / 100;
 												blocking = _drivers[i]['blocking'] / 100;
 												bad_weather = _drivers[i]['bad_weather'] / 100;
 												reaction_time = _drivers[i]['reaction_time'] / 100;
-												//concentration = _drivers[i]['concentration'] / 100;
+												concentration = _drivers[i]['concentration'] / 100;
 												patience = _drivers[i]['patience'] / 100;
 												aggresiveness = _drivers[i]['aggresiveness'] / 100;
 												will = _drivers[i]['will'] / 100;
@@ -219,21 +228,25 @@ router.get('/simulate/:track_id/:user_id', function(req, res){
 												fitness = _drivers[i]['fitness'] / 100;
 												overall = _drivers[i]['overall'] / 100;
 
-												hitrostModifier = faktorMateriala * faktorKota * (pospesek + motorKonji) *overall;
+												hitrostModifier = (faktorMateriala + faktorKota + (pospesek * motorKonji) + overall)/4;
+												if(Math.random() < overtaking){ //je prehitel nekoga
+													hitrostModifier += (1.0 - hitrostModifier)/2;
+												}
+												//console.log(hitrostModifier);
 										//	* blocking * bad_weather * reaction_time * patience * aggresiveness * will * intelligence * 
 												casVoznika = dolzinaOdseka / (najvecjaHitrost * hitrostModifier);
-
-												RaceSimulation["sections"][j][i] = casVoznika;
-												if(Math.random() > overtaking){ //je prehitel nekoga
-													RaceSimulation["sections"][j][i] -= (dolzinaOdseka/najvecjaHitrost)/2;
-												}
+												casVoznika += Math.random() * 10 + 3;
+												//console.log(casVoznika);
+												_sections[j][0][i] = casVoznika;
+												_sections[j][1][i] = _drivers[i]['_id'];
+												_final_times[i] += casVoznika;
 											}
 
 											//VOZILO
-											pospesek = user_vehicle['acceleration'];
+											pospesek = user_vehicle['acceleration'] / 10;
 											najvecjaHitrost = user_vehicle['topSpeed'];
 											teza = user_vehicle['weight'];
-											motorKonji = user_vehicle['engine']['horsePower'];   
+											motorKonji = user_vehicle['engine']['horsePower'] / 200;   
 											//DRIVER   
 											overtaking = user_driver['overtaking'] / 100;
 											blocking = user_driver['blocking'] / 100;
@@ -247,15 +260,65 @@ router.get('/simulate/:track_id/:user_id', function(req, res){
 											fitness = user_driver['fitness'] / 100;
 											overall = user_driver['overall'] / 100;
 
-											hitrostModifier = faktorMateriala * faktorKota * (pospesek  * motorKonji) *(overtaking * blocking * bad_weather * reaction_time * concentration * patience * aggresiveness * will * intelligence * overall);
-											casVoznika = dolzinaOdseka / (najvecjaHitrost * hitrostModifier);
-										
-											RaceSimulation["sections"][j][_drivers.length] = casVoznika;
-											if(Math.random() > overtaking){ //je prehitel nekoga
-												RaceSimulation["sections"][j][_drivers.length] -= (dolzinaOdseka/najvecjaHitrost)/2;
+
+											hitrostModifier = (faktorMateriala + faktorKota + (pospesek * motorKonji) + overall)/4;
+											if(Math.random() < overtaking){ //je prehitel nekoga
+												hitrostModifier += (1.0 - hitrostModifier)/2;
 											}
+											casVoznika = dolzinaOdseka / (najvecjaHitrost * hitrostModifier);	
+											casVoznika += Math.random() * 10 + 3;
+											_sections[j][0][4] = casVoznika;
+											_sections[j][1][4] = user_driver._id;
+											_final_times[4] += casVoznika;
 											
+
+											var swapped;
+											do {
+												swapped = false;
+												for (var l=0; l < 5; l++) {
+													if(_sections[j][0][l] > _sections[j][0][l+1]){
+														var tmp = _sections[j][0][l];
+														_sections[j][0][l] = _sections[j][0][l+1];
+														_sections[j][0][l+1] = tmp;
+														tmp = _sections[j][1][l];
+														_sections[j][1][l] = _sections[j][1][l+1];
+														_sections[j][1][l+1] = tmp;
+														swapped = true;
+													}
+												}
+											} while (swapped);
 										}
+
+										do {
+											swapped = false;
+											for (var l=0; l < 5; l++) {
+												if(	_final_times[l] > _final_times[l+1]){
+													var tmp = _final_times[l];
+													_final_times[l] = _final_times[l+1];
+													_final_times[l+1] = tmp;
+
+													tmp = _drivers[l];
+													_drivers[l] = _drivers[l+1];
+													_drivers[l+1] = tmp;
+
+													tmp = _vehicles[l];
+													_vehicles[l] = _vehicles[l+1];
+													_vehicles[l+1] = tmp;
+													swapped = true;
+												}
+											}
+										} while (swapped);
+
+										// while(_drivers.length > 4){
+										// 	delete _drivers[_drivers.length-1];
+										// }
+										var RaceSimulation = new Race({
+											sections: _sections,
+											drivers: _drivers,
+											vehicles: _vehicles,
+											final_times: _final_times,
+											track: _track
+										});
 										RaceSimulation.save();
 										res.json(RaceSimulation);
 									}
@@ -265,8 +328,8 @@ router.get('/simulate/:track_id/:user_id', function(req, res){
 					}
 				});
 			}
-		}).limit(5);
-	}}).limit(5);;
+		});
+	}});
 });
 
 //vrni vse simulacije dirk

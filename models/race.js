@@ -12,6 +12,7 @@ var VehicleSchema = mongoose.model('vehicle').schema;
 var RaceSchema = new Schema({
     sections: Array,
     track: TrackSchema,
+    final_times: Array,
     drivers: [DriverSchema],
     vehicles: [VehicleSchema]
 });

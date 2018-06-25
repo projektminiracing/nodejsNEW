@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();   //mini aplikacija za delo s progami
 
 var Driver=require('../models/driver');
+var User=require('../models/user');
 
 router.post('/', function(req, res) {
     var voznik = new Driver(req.body);
@@ -16,29 +17,38 @@ router.post('/', function(req, res) {
 });	
 
 router.post('/upgrade',function(req,res){
-    Driver.findByIdAndUpdate({_id : req.body._id},{
-        speed: req.body.speed,
-        overtaking: req.body.overtaking,
-        blocking: req.body.blocking,
-        bad_weather: req.body.bad_weather,
-        reaction_time: req.body.reaction_time,
-        concetration: req.body.concetration,
-        patience: req.body.patience,
-        aggresiveness: req.body.aggresiveness,
-        will: req.body.will,
-        intelligence: req.body.intelligence,
-        fitness: req.body.fitness,
-        injuries: req.body.injuries
-    },function(err,driver){
+    User.findById({_id : req.body.user_id},function(err,user){
         if(err)
-            res.status(500).send({ error: err });
+            res.status(500).send({err:"User does not exist!"});
         else{
-            driver.overall = (driver.speed +driver.overtaking +driver.blocking +driver.bad_weather +driver.reaction_time +driver.concetration +driver.patience +driver.aggresiveness +driver.will +driver.intelligence +driver.fitness +driver.injuries)/12;
-            driver.save(function(err,_driver){
+            if(user.skill_points <= 0) {
+                res.status(500).send({err:"User has 0 skill points available!"});
+            }
+            Driver.findByIdAndUpdate({_id : req.body._id},{
+                speed: req.body.speed,
+                overtaking: req.body.overtaking,
+                blocking: req.body.blocking,
+                bad_weather: req.body.bad_weather,
+                reaction_time: req.body.reaction_time,
+                concetration: req.body.concetration,
+                patience: req.body.patience,
+                aggresiveness: req.body.aggresiveness,
+                will: req.body.will,
+                intelligence: req.body.intelligence,
+                fitness: req.body.fitness,
+                injuries: req.body.injuries
+            },function(err,driver){
                 if(err)
-                    res.status(501).send({error:err});
-                else
-                    res.json(_driver);
+                    res.status(500).send({ error: err });
+                else{
+                    driver.overall = (driver.speed +driver.overtaking +driver.blocking +driver.bad_weather +driver.reaction_time +driver.concetration +driver.patience +driver.aggresiveness +driver.will +driver.intelligence +driver.fitness +driver.injuries)/12;
+                    driver.save(function(err,_driver){
+                        if(err)
+                            res.status(501).send({error:err});
+                        else
+                            res.json(_driver);
+                    });
+                }
             });
         }
     });

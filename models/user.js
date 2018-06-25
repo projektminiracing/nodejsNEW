@@ -9,7 +9,8 @@ var UserSchema = new Schema({
     firstname: String,
     lastname: String,
     birthday: Date,
-    photo_path: String
+    photo_path: String,
+    skill_points: Number
     //dodaj sliko
 });
 

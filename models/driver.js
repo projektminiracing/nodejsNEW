@@ -5,12 +5,12 @@ var Schema = mongoose.Schema;
 
 var DriverSchema = new Schema({
     user_id : String,
-    ime: String,
+    name: String,
     age: Number,
     sex: String,
     rank: Number,
     number_of_wins: Number,
-    drzava: String,
+    country: String,
     speed: Number,
     overtaking: Number,
     blocking: Number,

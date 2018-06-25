@@ -55,8 +55,10 @@ router.post('/',function(req,res){
 
 router.post('/upgrade',function(req,res){
     Vehicle.findByIdAndUpdate({_id : req.body._id},{
-        batteryConsumption: req.body.engine.batteryConsumption,
-        horsePower: req.body.engine.horsePower,
+		engine: {
+			horsePower: req.body.engine.horsePower,
+			batteryConsumption: req.body.engine.batteryConsumption
+		},
         chargeTime: req.body.chargeTime,
         acceleration: req.body.acceleration,
         topSpeed: req.body.topSpeed

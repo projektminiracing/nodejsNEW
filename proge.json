@@ -1,0 +1,942 @@
+[
+  {
+    "location": "Garage",
+    "difficulty": 1,
+    "length": 3371,
+    "laps": 1,
+    "sections": [
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 2,
+        "length": 125,
+        "material": "Grass",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 5.08
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 3,
+          "width": 3,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 4,
+        "length": 394,
+        "material": "Grass",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 6.7
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 3,
+          "width": 4,
+          "length": 4
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 2,
+        "length": 155,
+        "material": "Grass",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 5.84
+        },
+        "obstacles": {
+          "name": "Spoon",
+          "height": 3,
+          "width": 3,
+          "length": 4
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 11,
+        "elevation": 2,
+        "length": 392,
+        "material": "Grass",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 5.06
+        },
+        "obstacles": {
+          "name": "Spoon",
+          "height": 4,
+          "width": 2,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 3,
+        "length": 492,
+        "material": "Metal",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 5.94
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 2,
+          "width": 3,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 0,
+        "length": 281,
+        "material": "Metal",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 5.93
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 3,
+          "width": 3,
+          "length": 2
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 4,
+        "length": 254,
+        "material": "Metal",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 5.07
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 2,
+          "width": 3,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 31,
+        "elevation": 0,
+        "length": 384,
+        "material": "Metal",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 5.86
+        },
+        "obstacles": {
+          "name": "Cheese",
+          "height": 2,
+          "width": 4,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 37,
+        "elevation": 3,
+        "length": 478,
+        "material": "Metal",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 6.29
+        },
+        "obstacles": {
+          "name": "Cheese",
+          "height": 3,
+          "width": 4,
+          "length": 4
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 42,
+        "elevation": 1,
+        "length": 416,
+        "material": "Metal",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 6.69
+        },
+        "obstacles": {
+          "name": "Spoon",
+          "height": 2,
+          "width": 1,
+          "length": 4
+        }
+      }
+    ]
+  },
+  {
+    "location": "Back yard",
+    "difficulty": 1,
+    "length": 2591,
+    "laps": 1,
+    "sections": [
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 2,
+        "length": 110,
+        "material": "Metal",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 5.22
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 1,
+          "width": 3,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 6,
+        "elevation": 0,
+        "length": 288,
+        "material": "Metal",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 7.29
+        },
+        "obstacles": {
+          "name": "Spoon",
+          "height": 4,
+          "width": 4,
+          "length": 2
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 26,
+        "elevation": 4,
+        "length": 295,
+        "material": "Metal",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 5.99
+        },
+        "obstacles": {
+          "name": "Cheese",
+          "height": 3,
+          "width": 1,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Left",
+        "angle": 42,
+        "elevation": 3,
+        "length": 149,
+        "material": "Metal",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 5.59
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 1,
+          "width": 3,
+          "length": 4
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 3,
+        "length": 244,
+        "material": "Grass",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 5.45
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 1,
+          "width": 3,
+          "length": 2
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 1,
+        "length": 488,
+        "material": "Grass",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 6.75
+        },
+        "obstacles": {
+          "name": "Spoon",
+          "height": 3,
+          "width": 3,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 1,
+        "elevation": 4,
+        "length": 130,
+        "material": "Grass",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 7.33
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 2,
+          "width": 1,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 4,
+        "length": 194,
+        "material": "Grass",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 5.05
+        },
+        "obstacles": {
+          "name": "Spoon",
+          "height": 4,
+          "width": 1,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Left",
+        "angle": 9,
+        "elevation": 3,
+        "length": 439,
+        "material": "Grass",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 6.59
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 4,
+          "width": 4,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 30,
+        "elevation": 3,
+        "length": 254,
+        "material": "Grass",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 5.4
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 1,
+          "width": 3,
+          "length": 3
+        }
+      }
+    ]
+  },
+  {
+    "location": "Kitchen",
+    "difficulty": 1,
+    "length": 2328,
+    "laps": 1,
+    "sections": [
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 3,
+        "length": 372,
+        "material": "Glass",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 6.9
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 4,
+          "width": 1,
+          "length": 4
+        }
+      },
+      {
+        "direction": "Left",
+        "angle": 44,
+        "elevation": 1,
+        "length": 231,
+        "material": "Glass",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 5.49
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 2,
+          "width": 1,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 1,
+        "length": 336,
+        "material": "Glass",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 5.38
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 3,
+          "width": 1,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 12,
+        "elevation": 3,
+        "length": 185,
+        "material": "Glass",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 6.22
+        },
+        "obstacles": {
+          "name": "Cheese",
+          "height": 1,
+          "width": 2,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 4,
+        "length": 105,
+        "material": "Wood",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 6.51
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 1,
+          "width": 2,
+          "length": 2
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 0,
+        "length": 172,
+        "material": "Wood",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 5.8
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 2,
+          "width": 1,
+          "length": 4
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 35,
+        "elevation": 0,
+        "length": 427,
+        "material": "Wood",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 6.42
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 2,
+          "width": 4,
+          "length": 4
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 3,
+        "length": 111,
+        "material": "Wood",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 5.51
+        },
+        "obstacles": {
+          "name": "Cheese",
+          "height": 1,
+          "width": 3,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 1,
+        "length": 280,
+        "material": "Wood",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 6.0
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 2,
+          "width": 2,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Left",
+        "angle": 40,
+        "elevation": 3,
+        "length": 109,
+        "material": "Wood",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 5.83
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 2,
+          "width": 4,
+          "length": 1
+        }
+      }
+    ]
+  },
+  {
+    "location": "Bathroom",
+    "difficulty": 1,
+    "length": 2683,
+    "laps": 1,
+    "sections": [
+      {
+        "direction": "Left",
+        "angle": 11,
+        "elevation": 4,
+        "length": 187,
+        "material": "Porcelaine",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 6.73
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 4,
+          "width": 1,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Left",
+        "angle": 17,
+        "elevation": 0,
+        "length": 338,
+        "material": "Porcelaine",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 5.53
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 1,
+          "width": 2,
+          "length": 2
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 2,
+        "elevation": 4,
+        "length": 158,
+        "material": "Porcelaine",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 6.45
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 4,
+          "width": 4,
+          "length": 2
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 2,
+        "length": 276,
+        "material": "Porcelaine",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 7.48
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 2,
+          "width": 4,
+          "length": 4
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 2,
+        "length": 150,
+        "material": "Wood",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 6.2
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 4,
+          "width": 3,
+          "length": 2
+        }
+      },
+      {
+        "direction": "Left",
+        "angle": 6,
+        "elevation": 0,
+        "length": 379,
+        "material": "Wood",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 6.78
+        },
+        "obstacles": {
+          "name": "Cheese",
+          "height": 1,
+          "width": 1,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Left",
+        "angle": 44,
+        "elevation": 4,
+        "length": 185,
+        "material": "Wood",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 5.56
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 4,
+          "width": 1,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 4,
+        "length": 385,
+        "material": "Wood",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 6.95
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 2,
+          "width": 4,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 0,
+        "length": 343,
+        "material": "Wood",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 5.91
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 1,
+          "width": 4,
+          "length": 4
+        }
+      },
+      {
+        "direction": "Left",
+        "angle": 5,
+        "elevation": 4,
+        "length": 282,
+        "material": "Wood",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 6.0
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 3,
+          "width": 3,
+          "length": 4
+        }
+      }
+    ]
+  },
+  {
+    "location": "Living room",
+    "difficulty": 1,
+    "length": 2943,
+    "laps": 1,
+    "sections": [
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 3,
+        "length": 393,
+        "material": "Wood",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 5.95
+        },
+        "obstacles": {
+          "name": "Spoon",
+          "height": 4,
+          "width": 4,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 9,
+        "elevation": 4,
+        "length": 261,
+        "material": "Wood",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 6.5
+        },
+        "obstacles": {
+          "name": "Cheese",
+          "height": 2,
+          "width": 3,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Left",
+        "angle": 35,
+        "elevation": 4,
+        "length": 141,
+        "material": "Wood",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 5.53
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 2,
+          "width": 2,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Left",
+        "angle": 16,
+        "elevation": 4,
+        "length": 395,
+        "material": "Wood",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 6.29
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 4,
+          "width": 3,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 0,
+        "length": 472,
+        "material": "Porcelaine",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 6.49
+        },
+        "obstacles": {
+          "name": "Fork",
+          "height": 4,
+          "width": 4,
+          "length": 1
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 12,
+        "elevation": 1,
+        "length": 285,
+        "material": "Porcelaine",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 5.15
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 3,
+          "width": 2,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 0,
+        "length": 254,
+        "material": "Porcelaine",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 6.4
+        },
+        "obstacles": {
+          "name": "Cheese",
+          "height": 2,
+          "width": 1,
+          "length": 3
+        }
+      },
+      {
+        "direction": "Straight",
+        "angle": 0,
+        "elevation": 3,
+        "length": 179,
+        "material": "Porcelaine",
+        "powerups": {
+          "name": "Rocket",
+          "description": "Shoot a rocket at an enemy",
+          "duration": 6.3
+        },
+        "obstacles": {
+          "name": "Plate",
+          "height": 1,
+          "width": 4,
+          "length": 2
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 9,
+        "elevation": 3,
+        "length": 365,
+        "material": "Porcelaine",
+        "powerups": {
+          "name": "Extra speed",
+          "description": "Gain extra speed for a certain amount of time",
+          "duration": 5.82
+        },
+        "obstacles": {
+          "name": "Spoon",
+          "height": 3,
+          "width": 1,
+          "length": 2
+        }
+      },
+      {
+        "direction": "Right",
+        "angle": 34,
+        "elevation": 3,
+        "length": 198,
+        "material": "Porcelaine",
+        "powerups": {
+          "name": "Trap",
+          "description": "Place a trap on the track for your enemies to run into",
+          "duration": 7.37
+        },
+        "obstacles": {
+          "name": "Spoon",
+          "height": 3,
+          "width": 4,
+          "length": 1
+        }
+      }
+    ]
+  }
+]

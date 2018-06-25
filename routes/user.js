@@ -21,7 +21,9 @@ router.post('/register', function(req, res) {
         password : req.body.password,
         firstname : req.body.firstname,
         lastname : req.body.lastname,
-        birthday : req.body.birthday
+        birthday : req.body.birthday,
+        photo_path : 'images/default.png',		
+	    skill_points: 0
     });
    	//shranimo nov objekt v bazo
    	user.save(function(err,user) {
