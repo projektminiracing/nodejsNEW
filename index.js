@@ -12,8 +12,9 @@ var mongoose=require("mongoose");
 
 var cors = require('cors');
 var allowedOrigins = ['http://localhost:8100',"http://localhost:8000" ,
-                      'http://yourapp.com'];
-app.use(cors({
+                      'http://yourapp.com', 'http://10.0.2.2:8000' , '*'];
+app.use(cors(
+  /*{
   credentials: true,
   origin: function(origin, callback){
     // allow requests with no origin 
@@ -26,7 +27,7 @@ app.use(cors({
     }
     return callback(null, true);
   }
-}));
+}*/));
 
 //app.use(function()) se vedno izvede pri vsaki zahtevi
 app.use(bodyParser.json()); // knjižnica, ki nam razparsa json na vhodu
